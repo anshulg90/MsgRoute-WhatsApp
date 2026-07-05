@@ -1,125 +1,223 @@
-=== MsgRoute WhatsApp ===
-Contributors: anshul
-Tags: whatsapp, woocommerce, notifications, messaging, automation
-Requires at least: 6.2
-Tested up to: 6.5
-Requires PHP: 7.4
-Stable tag: 1.1.0
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+# MsgRoute Notifications
 
-Send WooCommerce order updates on WhatsApp, admin alerts, and bulk WhatsApp messages through a MsgRoute REST API key.
+A WordPress and WooCommerce plugin for sending outgoing customer notifications through the MsgRoute REST API.
 
-== Description ==
+MsgRoute Notifications is built for store owners who want order status updates, admin alerts, test messages, bulk sends, and delivery logs from inside WordPress. The plugin only stores outgoing message attempts and API errors. It does not store incoming customer conversations.
 
-MsgRoute WhatsApp connects WordPress and WooCommerce to a configured MsgRoute WhatsApp REST API endpoint. It helps store owners send outgoing WhatsApp messages for order status changes, admin alerts, manual test messages, and selected bulk notifications.
+## Features
 
-The plugin is designed for outgoing business notifications. It does not store incoming WhatsApp messages.
+- MsgRoute API connection settings
+- Test message sender from WordPress admin
+- WooCommerce order status message templates
+- Live template preview with supported variables
+- Customer opt-in checkbox on WooCommerce checkout
+- Admin notification rules for selected order statuses
+- Message logs for outgoing attempts and API errors
+- Connection status screen for API/session checks
+- Bulk sender with a 100-recipient safety cap
+- Frontend chat button shortcode
 
-= Key features =
 
-* MsgRoute API connection settings.
-* Send a test WhatsApp message from WordPress admin.
-* WooCommerce order status templates.
-* Live template preview with supported variables.
-* Customer opt-in checkbox on WooCommerce checkout.
-* Admin WhatsApp alerts for selected order statuses.
-* Message logs for outgoing attempts and API errors.
-* Connection status check for API/session health.
-* Bulk WhatsApp sender for opted-in recipients.
-* WhatsApp chat button shortcode.
+## Screenshots
 
-= Template variables =
+### Settings
 
-Use these variables in WooCommerce templates:
+![MsgRoute Notifications settings screen](https://raw.githubusercontent.com/anshulg90/MsgRoute-WhatsApp/refs/heads/main/assets/screenshot-1.png)
 
-* `{order_id}`
-* `{customer_name}`
-* `{customer_phone}`
-* `{order_total}`
-* `{site_name}`
-* `{order_status}`
-* `{order_items}`
-* `{order_items_count}`
-* `{billing_email}`
-* `{shipping_address}`
-* `{payment_method}`
+### Message Templates
 
-= Shortcode =
+![MsgRoute Notifications message templates screen](https://raw.githubusercontent.com/anshulg90/MsgRoute-WhatsApp/refs/heads/main/assets/screenshot-2.png)
 
-Use this shortcode to show a WhatsApp chat button:
+### Message Logs
 
-`[msgroute_whatsapp_button phone="919898989898" text="Hello" label="Chat on WhatsApp"]`
+![MsgRoute Notifications message logs screen](https://raw.githubusercontent.com/anshulg90/MsgRoute-WhatsApp/refs/heads/main/assets/screenshot-3.png)
+## Requirements
 
-= External services =
+- WordPress 6.2 or newer
+- PHP 7.4 or newer
+- WooCommerce for order templates and checkout opt-in features
+- Active MsgRoute API URL and API key
 
-This plugin connects to a MsgRoute REST API endpoint configured by the site administrator in MsgRoute > Settings. Administrators must enter their own MsgRoute API URL before sending messages.
+WooCommerce is optional for basic plugin features such as Settings, Send Test Message, Message Logs, Connection Status, Bulk Sender, and the shortcode.
 
-When a message is sent, the plugin sends the recipient phone number and message body to the configured MsgRoute API using the site's saved API key. Connection Status sends a status request to the configured API endpoint. No data is sent to MsgRoute until the administrator configures the API URL/key and triggers a message workflow, test message, bulk send, or connection check.
+## Installation
 
-Service provider: MsgRoute. Production installs should use the MsgRoute service URL supplied with the site's API credentials. MsgRoute service terms and privacy policy apply to messages sent through that configured API endpoint.
+### Install From ZIP
 
-== Installation ==
+1. Download or build `msgroute-notifications.zip`.
+2. Open WordPress admin.
+3. Go to `Plugins > Add New > Upload Plugin`.
+4. Upload the ZIP file.
+5. Activate `MsgRoute Notifications`.
+6. Go to `MsgRoute > Settings`.
+7. Add your MsgRoute API Base URL and Active API Key.
+8. Open `MsgRoute > Connection Status` to verify the setup.
 
-1. Upload the plugin folder to `/wp-content/plugins/msgroute-whatsapp/`, or install the ZIP from Plugins > Add New > Upload Plugin.
-2. Activate the plugin from the WordPress Plugins screen.
-3. Go to MsgRoute > Settings.
-4. Enter your MsgRoute API Base URL and Active API Key.
-5. Save settings.
-6. Open MsgRoute > Connection Status to verify the API connection.
-7. Open MsgRoute > Message Templates to enable WooCommerce order status messages.
-8. Open MsgRoute > Customer Opt-in to configure checkout consent text.
+### Manual Install
 
-== Frequently Asked Questions ==
+Copy the plugin folder to:
 
-= Does this plugin include a WhatsApp gateway? =
+```text
+wp-content/plugins/msgroute-notifications/
+```
 
-No. This plugin requires a configured MsgRoute API endpoint and active API key.
+Then activate it from the WordPress Plugins screen.
 
-= Does it work without WooCommerce? =
+## Configuration
 
-Yes. You can use Settings, Send Test Message, Message Logs, Connection Status, Bulk Sender, and the shortcode without WooCommerce. WooCommerce is required for order status templates and checkout opt-in.
+Open `MsgRoute > Settings` and configure:
 
-= Are incoming WhatsApp messages stored? =
+- `API Base URL`: Your MsgRoute API endpoint
+- `Active API Key`: API key generated from the MsgRoute client dashboard
+- `Default Country Code`: Used when a 10-digit local phone number is entered
+- `Admin Recipient Number`: Number used for admin order alerts
 
-No. The plugin stores outgoing message attempts and errors only. Incoming WhatsApp messages are not stored by this plugin.
+The plugin will not send any message until the API URL and API key are configured.
 
-= Where are message logs stored? =
+## WooCommerce Templates
 
-Outgoing logs are stored in the WordPress database table `wp_msgroute_whatsapp_logs` using the current site's database prefix.
+Open `MsgRoute > Message Templates` to enable messages for order statuses such as:
 
-= How many recipients can Bulk Sender process at once? =
+- Pending payment
+- Processing
+- On hold
+- Completed
+- Cancelled
+- Failed
+- Refunded
 
-Bulk Sender is capped at 100 recipients per submit to reduce accidental large sends.
+Supported template variables:
 
-= Does the plugin require customer consent? =
+```text
+{order_id}
+{customer_name}
+{customer_phone}
+{order_total}
+{site_name}
+{order_status}
+{order_items}
+{order_items_count}
+{billing_email}
+{shipping_address}
+{payment_method}
+```
 
-The plugin includes an optional WooCommerce checkout opt-in checkbox. You are responsible for configuring consent text and using the plugin according to applicable messaging, privacy, and anti-spam laws.
+Example template:
 
-== Screenshots ==
+```text
+Hi {customer_name}, your order #{order_id} is now {order_status}. Items: {order_items}. Total: {order_total}.
+```
 
-1. Settings screen with API connection and test message panel.
-2. Message Templates screen with status-specific WooCommerce templates and live preview.
-3. Message Logs screen showing outgoing attempts and errors.
-4. Admin Notification screen for admin WhatsApp alerts.
-5. Connection Status and Bulk Sender screens.
+## Customer Opt-in
 
-== Changelog ==
+Open `MsgRoute > Customer Opt-in` to enable a checkout consent checkbox. When enabled, customer order notifications are sent only if the customer opts in.
 
-= 1.1.0 =
-* Added WooCommerce status templates with preview.
-* Added message logs.
-* Added admin notifications.
-* Added customer opt-in settings.
-* Added connection status check.
-* Added bulk sender.
-* Added security hardening for nonces, capabilities, sanitization, and escaping.
+The consent value is saved on the WooCommerce order as:
 
-= 1.0.0 =
-* Initial plugin with API settings, test message, WooCommerce notifications, and shortcode.
+```text
+_msgroute_notifications_optin
+```
 
-== Upgrade Notice ==
+## Admin Notifications
 
-= 1.1.0 =
-Adds advanced admin screens, logging, opt-in settings, and bulk sender. Review settings after updating.
+Open `MsgRoute > Admin Notification` to send admin alerts for selected WooCommerce order statuses. The admin recipient number is managed from the main Settings page.
+
+## Message Logs
+
+Open `MsgRoute > Message Logs` to review outgoing message attempts.
+
+Logs include:
+
+- Time
+- Recipient phone number
+- Context
+- Status
+- Message/error summary
+
+Incoming customer messages are not stored by this plugin.
+
+## Bulk Sender
+
+Open `MsgRoute > Bulk Sender` to send a manual broadcast to selected phone numbers.
+
+Safety behavior:
+
+- Maximum 100 recipients per submit
+- Duplicate numbers are removed
+- Every attempt is logged
+- Use only for opted-in recipients
+
+## Shortcode
+
+Use this shortcode to show a frontend chat button:
+
+```text
+[msgroute_message_button phone="919898989898" text="Hello" label="Chat with us"]
+```
+
+If `phone` is empty, the plugin uses the admin recipient number from Settings.
+
+## External Service Disclosure
+
+This plugin connects to a MsgRoute REST API endpoint configured by the site administrator.
+
+When a message is sent, the plugin sends the following data to the configured MsgRoute API endpoint:
+
+- Recipient phone number
+- Message body
+- API key in the request header
+
+Connection Status sends a status request to the configured API endpoint. No data is sent until the administrator configures the API URL/API key and triggers a workflow, test message, bulk send, or connection check.
+
+## Privacy Notes
+
+- The plugin stores outgoing message attempts and API errors.
+- The plugin does not store incoming customer conversations.
+- Store owners are responsible for consent text, lawful messaging, anti-spam compliance, and privacy policy updates.
+
+## WordPress.org Package
+
+Use this ZIP for plugin submission/testing:
+
+```text
+wordpress-plugin/msgroute-notifications.zip
+```
+
+Do not submit older packages that use restricted terms in the plugin display name or slug.
+
+## Development
+
+Main files:
+
+```text
+msgroute-notifications.php
+includes/advanced.php
+assets/admin.css
+assets/admin.js
+assets/frontend.css
+readme.txt
+```
+
+Run a PHP syntax check:
+
+```bash
+php -l msgroute-notifications.php
+php -l includes/advanced.php
+```
+
+## Security
+
+The plugin uses:
+
+- Capability checks with `manage_options`
+- WordPress nonces for admin actions
+- Sanitization for saved options and submitted form values
+- Escaping for admin output
+- `wp_remote_get` and `wp_remote_post` for API calls
+
+Do not commit real API keys or production secrets.
+
+## License
+
+GPLv2 or later.
 
