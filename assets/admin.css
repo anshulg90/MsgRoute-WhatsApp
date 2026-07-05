@@ -1,0 +1,39 @@
+.msgroute-wrap { max-width: 1180px; }
+.msgroute-header { display: flex; justify-content: space-between; gap: 24px; align-items: center; margin: 24px 0; padding: 24px; border: 1px solid #dbe4ee; border-radius: 14px; background: #fff; box-shadow: 0 1px 0 rgba(15, 23, 42, .04); }
+.msgroute-header h1 { margin: 0; font-size: 30px; font-weight: 800; }
+.msgroute-header p { margin: 8px 0 0; color: #64748b; font-size: 15px; }
+.msgroute-pill { display: inline-flex; align-items: center; border: 1px solid #b8ead0; border-radius: 999px; background: #ecfdf5; color: #15803d; padding: 8px 12px; font-weight: 700; white-space: nowrap; }
+.msgroute-grid, .msgroute-settings-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.msgroute-card { border: 1px solid #dbe4ee; border-radius: 14px; background: #fff; padding: 22px; box-shadow: 0 1px 0 rgba(15, 23, 42, .04); }
+.msgroute-card h2 { margin: 0 0 18px; font-size: 20px; }
+.msgroute-card label { display: grid; gap: 8px; margin-bottom: 14px; color: #0f172a; font-weight: 700; }
+.msgroute-card input[type="text"], .msgroute-card input[type="url"], .msgroute-card input[type="password"], .msgroute-card textarea { width: 100%; max-width: none; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px 12px; }
+.msgroute-card textarea { resize: vertical; }
+.msgroute-check { display: flex !important; grid-template-columns: none; flex-direction: row; align-items: flex-start; gap: 10px !important; font-weight: 600 !important; }
+.msgroute-check input { margin-top: 2px; }
+.msgroute-wide { grid-column: 1 / -1; }
+.msgroute-test-card { margin-top: 0; }
+.msgroute-test-row { display: grid; grid-template-columns: 1fr; gap: 12px; align-items: stretch; }
+.msgroute-result { margin: 12px 0 0; font-weight: 700; }
+.msgroute-result.success { color: #15803d; }
+.msgroute-result.error { color: #b91c1c; }
+.msgroute-notifications-button { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 0 16px; border-radius: 10px; background: #34c77b; color: #fff !important; font-weight: 800; text-decoration: none !important; }
+@media (max-width: 900px) { .msgroute-grid, .msgroute-settings-grid { grid-template-columns: 1fr; } .msgroute-header { align-items: flex-start; flex-direction: column; } }.msgroute-vars { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0; }
+.msgroute-vars li { margin: 0; list-style: none; }
+.msgroute-vars code { display: inline-flex; border: 1px solid #dbe4ee; border-radius: 999px; padding: 5px 9px; background: #f8fafc; color: #0f172a; }
+.msgroute-preview { border: 1px solid #dbe4ee; border-radius: 12px; background: #f8fafc; padding: 12px; margin-top: 10px; }
+.msgroute-preview p { margin: 6px 0 0; color: #334155; line-height: 1.55; }
+.msgroute-toolbar { display: flex; justify-content: flex-end; margin-bottom: 14px; }
+.msgroute-table-wrap { overflow-x: auto; }
+.msgroute-status { display: inline-flex; border-radius: 999px; padding: 4px 8px; font-size: 12px; font-weight: 800; background: #f1f5f9; color: #334155; }
+.msgroute-status-sent { background: #dcfce7; color: #166534; }
+.msgroute-status-failed { background: #fee2e2; color: #991b1b; }
+.msgroute-error { color: #b91c1c; }
+.msgroute-save-card { padding: 16px 22px; }
+.msgroute-save-card .submit { margin: 0; padding: 0; }
+.msgroute-save-card p.submit { margin: 0; padding: 0; }
+
+.msgroute-api-form .submit { margin: 14px 0 0; padding: 0; }
+.msgroute-api-form p.submit { margin: 14px 0 0; padding: 0; }
+
+
